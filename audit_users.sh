@@ -133,24 +133,23 @@ compliant=0
 		fi
 
 		IFS="/" read -a group_array  <<< "$groups";
-		for group in "${#group_array[@]}"; do
-			echo "${group_array[$group - 1]}"
+		for group in "${group_array[@]}"; do
 			# check if group exists, log, then create group if not
-			if [[ -z $(getent group "${group_array[$group - 1]}") ]]; then
-				log "$e" "${group_array[$group - 1]} group does not exist."
+			if [[ -z $(getent group "$group") ]]; then
+				log "$e" "$group group does not exist."
 				failed=true
-				groupadd "${group_array[$group - 1]}"
+				groupadd "$group"
 				# check {group_array[$group]} did not fail
-				if [[ -n $(getent group "${group_array[$group - 1]}") ]]; then
-					log "$f" "${group_array[$group - 1]} group has been added."
+				if [[ -n $(getent group "$group") ]]; then
+					log "$f" "$group group has been added."
 					((fixed++))
 					# add user to newly created group
-					usermod -aG "${group_array[$group - 1]}" "$username"
-					log "$f" "$username added to ${group_array[$group - 1]}."
+					usermod -aG "$group" "$username"
+					log "$f" "$username added to $group."
 					((fixed++))
 					continue
 				else
-					log "$e" "Failed to add ${group_array[$group - 1]} group."
+					log "$e" "Failed to add $group group."
 					((error++))
 					continue
 				fi
@@ -161,18 +160,18 @@ compliant=0
 			fi
 
 			# check if user is part of group
-			if !  [[ $(id -nG "$username")  == *" ${group_array[$group - 1]} "* ]]; then
-				log "$e" "$username is not a member of ${group_array[$group - 1]}."
+			if !  [[ $(id -nG "$username")  == *"$group"* ]]; then
+				log "$e" "$username is not a member of $group."
 				((error++))
 				failed=true
-				usermod -aG "${group_array[$group - 1]}" "$username"
+				usermod -aG "$group" "$username"
 				# check addition did not fail
-				if  [[ $(id -nG "$username") == *" ${group_array[$group - 1]} "* ]]; then
-					log "$f" "$username added to ${group_array[$group - 1]}."
+				if  [[ $(id -nG "$username") == *"$group"* ]]; then
+					log "$f" "$username added to $group."
 					((fixed++))
 					continue
 				else
-					log "$e" "Failed to add $username to ${group_array[$group - 1]}."
+					log "$e" "Failed to add $username to $group."
 					((error++))
 					continue
 				fi
