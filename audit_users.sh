@@ -147,11 +147,11 @@ compliant=0
 					usermod -aG "$group" "$username"
 					log "$f" "$username added to $group."
 					((fixed++))
-					continue
+					
 				else
 					log "$e" "Failed to add $group group."
 					((error++))
-					continue
+					
 				fi
 			fi
 
