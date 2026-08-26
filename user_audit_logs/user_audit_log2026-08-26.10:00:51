@@ -1,0 +1,5 @@
+COMPLIANT : rob is compliant
+ERROR : ola is not a member of lecturer.
+ERROR : Failed to add ola to lecturer.
+ERROR : andy is not a member of student.
+ERROR : Failed to add andy to student.

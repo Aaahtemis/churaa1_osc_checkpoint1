@@ -1,0 +1,14 @@
+ERROR : rob does not exist in system.
+FIXED : rob user has been added.
+ERROR : rob is not a member of admin.
+FIXED : rob added to admin.
+ERROR : rob is not a member of lecturer.
+FIXED : rob added to lecturer.
+ERROR : ola does not exist in system.
+FIXED : ola user has been added.
+ERROR : ola is not a member of lecturer.
+FIXED : ola added to lecturer.
+ERROR : andy does not exist in system.
+FIXED : andy user has been added.
+ERROR : andy is not a member of student.
+FIXED : andy added to student.

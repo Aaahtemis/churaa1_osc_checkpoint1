@@ -1,0 +1,20 @@
+ERROR : rob does not exist in system.
+FIXED : rob user has been added.
+ERROR : rob is not a member of admin.
+FIXED : rob added to admin.
+ERROR : rob is not a member of lecturer.
+FIXED : rob added to lecturer.
+e : rob shell directory permissions are incorrect.
+f : /home/rob permissions successfully updated.
+ERROR : ola does not exist in system.
+FIXED : ola user has been added.
+ERROR : ola is not a member of lecturer.
+FIXED : ola added to lecturer.
+e : ola shell directory permissions are incorrect.
+f : /home/ola permissions successfully updated.
+ERROR : andy does not exist in system.
+FIXED : andy user has been added.
+ERROR : andy is not a member of student.
+FIXED : andy added to student.
+e : andy shell directory permissions are incorrect.
+f : /home/andy permissions successfully updated.

@@ -1,0 +1,9 @@
+ERROR : rob is not a member of admin.
+FIXED : rob added to admin.
+ERROR : lecturer group does not exist.
+FIXED : lecturer group has been added.
+FIXED : rob added to lecturer.
+ERROR : ola is not a member of lecturer.
+FIXED : ola added to lecturer.
+ERROR : andy is not a member of student.
+FIXED : andy added to student.

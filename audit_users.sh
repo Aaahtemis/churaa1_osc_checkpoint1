@@ -93,7 +93,7 @@ compliant=0
 			log "$e" "The line is either blank or a comment."
 			((error++))
 			failed=true
-			continue
+			
 		fi
 
 		# convert line to 3 variables
@@ -116,7 +116,7 @@ compliant=0
 
 		# check if user exists and creates user and shell directory if not
 		if [[ -z $(getent passwd "$username" | cut -d: -f7) ]]; then
-			log "$e" "username does not exist in system."
+			log "$e" "$username does not exist in system."
 			((error++))
 			failed=true
 			useradd -m -s "$shell" "$username"
@@ -124,7 +124,7 @@ compliant=0
 			if ! [[ -z $(getent passwd "$username" | cut -d: -f7)  ]]; then
 				log "$f" "$username user has been added."
 				((fixed++))
-				continue
+				
 			else
 				log "$e" "Failed to add $username."
 				((error++))
@@ -151,12 +151,7 @@ compliant=0
 				else
 					log "$e" "Failed to add $group group."
 					((error++))
-					
 				fi
-			fi
-
-			if [[ "$failed" == true ]]; then
-				continue
 			fi
 
 			# check if user is part of group
@@ -169,7 +164,6 @@ compliant=0
 				if  [[ $(id -nG "$username") == *"$group"* ]]; then
 					log "$f" "$username added to $group."
 					((fixed++))
-					continue
 				else
 					log "$e" "Failed to add $username to $group."
 					((error++))
@@ -184,6 +178,19 @@ compliant=0
 		#id -nG "$username"
 		# %U is the owning user, %a the octal permission bits
 		#stat -c '%U %a' "/home/$username"
+
+		if ! [[ $(stat -c '%a' "/home/$username") == "700" ]]; then
+			log "$e" "$username shell directory permissions are incorrect."
+			((error++))
+			failed=true
+			sudo chmod 700 "/home/$username"
+			if [[ $(stat -c '%a' "/home/$username") ==  "700" ]]; then
+				log "$f" "/home/$username permissions successfully updated."
+				((fixed++))
+			else
+				log "$e" "failed to adjust permissions for /home/$username."
+			fi
+		fi
 
 		if [[ "$failed" == false ]]; then
 			# finalise checks on user and log compliance
