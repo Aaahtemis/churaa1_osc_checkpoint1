@@ -1,6 +1,0 @@
-ERROR : rob is not a member of admin.
-FIXED : rob added to admin.
-ERROR : ola is not a member of lecturer.
-ERROR : Failed to add ola to lecturer.
-ERROR : andy is not a member of student.
-ERROR : Failed to add andy to student.

@@ -1,9 +1,0 @@
-ERROR : rob not a member of 2.
-ERROR : Failed to add rob to 2.
-COMPLIANT : rob is compliant
-ERROR : ola not a member of 1.
-ERROR : Failed to add ola to 1.
-COMPLIANT : ola is compliant
-ERROR : andy not a member of 1.
-ERROR : Failed to add andy to 1.
-COMPLIANT : andy is compliant
